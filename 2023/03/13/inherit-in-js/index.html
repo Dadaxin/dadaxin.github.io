@@ -1,90 +1,106 @@
+<!DOCTYPE html>
 <html>
-<!-- Head tag -->
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
+  
+  
+  <title>白话 JS 中的继承 | DaDaXin&#39;s Little World</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="思路：继承是什么 &gt;&gt; JS 继承依赖原型 &gt;&gt; 原型 &gt;&gt; 原型式继承 &gt;&gt; 原型链继承 &gt;&gt; … 继承，就是 A 的属性方法可以继承给 B，B 可以继续往下传。 同时，我们还希望  B 能够新增自己的属性和方法。 B 能够修改继承来的属性和方法，但不影响 A 也不干扰同代。  通过继承创建的新类称为“子类”或“派生类”，被继承的类称为">
+<meta property="og:type" content="article">
+<meta property="og:title" content="白话 JS 中的继承">
+<meta property="og:url" content="https://dadaxin.github.io/2023/03/13/inherit-in-js/index.html">
+<meta property="og:site_name" content="DaDaXin&#39;s Little World">
+<meta property="og:description" content="思路：继承是什么 &gt;&gt; JS 继承依赖原型 &gt;&gt; 原型 &gt;&gt; 原型式继承 &gt;&gt; 原型链继承 &gt;&gt; … 继承，就是 A 的属性方法可以继承给 B，B 可以继续往下传。 同时，我们还希望  B 能够新增自己的属性和方法。 B 能够修改继承来的属性和方法，但不影响 A 也不干扰同代。  通过继承创建的新类称为“子类”或“派生类”，被继承的类称为">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-03-13T14:41:04.540Z">
+<meta property="article:modified_time" content="2023-03-13T14:54:13.979Z">
+<meta property="article:author" content="DaDaXin">
+<meta property="article:tag" content="JS 技能树">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="DaDaXin's Little World" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
 
   
-  <title>
-    白话 JS 中的继承 |
-    DaDaXin&#39;s Little World
-  </title>
-  
-
-
-  <meta name="description" content="">
-  <meta name="author" content="DaDaXin">
-  <meta property="og:title" content="白话 JS 中的继承" />
-  <meta property="og:description" content="" />
-  <meta property='og:site_name' content='DaDaXin&#39;s Little World' />
-  <meta property="og:image" content="https://dadaxin.github.io/img/default.jpg" />
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:description" content="" />
-  <meta name="twitter:title" content="白话 JS 中的继承" />
-
-  <meta name="twitter:image" content="https://dadaxin.github.io/img/default.jpg" />
-
-  <script src="https://www.amcharts.com/lib/4/core.js"></script>
-  <script src="https://www.amcharts.com/lib/4/charts.js"></script>
-  <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
-
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-    crossorigin="anonymous">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
-    crossorigin="anonymous">
   
 <link rel="stylesheet" href="/css/style.css">
 
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
 
+  
 <meta name="generator" content="Hexo 5.4.2"></head>
 
 <body>
-    <!-- Menu -->
-    <nav id="navbar" class="navbar fixed-top navbar-expand-lg navbar-dark page-navbar gradient">
-  <div class="container">
-    <a class="navbar-brand logo" href="https://dadaxin.github.io">
-      DaDaXin&#39;s Little World</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
-      aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav mx-auto">
-        <li class="nav-item item">
-          
-        <li class="nav-item item">
-          <a class="nav-link" href="/">
-            Home</a>
-        </li>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">DaDaXin&#39;s Little World</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Welcome, make yourself at home, hope you can find something interesting here.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
         
-        <li class="nav-item item">
-          <a class="nav-link" href="/archives">
-            🗂️Archives</a>
-        </li>
+          <a class="main-nav-link" href="/">Home</a>
         
-        <li class="nav-item item">
-          <a class="nav-link" target="_blank" rel="noopener" href="https://hexo.io/">
-            Hexo</a>
-        </li>
+          <a class="main-nav-link" href="/archives">Archives</a>
         
-        </li>
-      </ul>
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://dadaxin.github.io"></form>
+      </div>
     </div>
   </div>
-</nav>
+</header>
 
-    <main class="page main-page">
-        <div class="container blogPost">
-    <div class="row">
-        <div class="col-sm-9 px-md-5">
-            <h2 class="blog-post-title">
-                白话 JS 中的继承
-            </h2>
-            <p class="meta">
-                <i class="far fa-clock"></i>
-                2023-03-13 
-            </p>
-            <!-- Content -->
-            <p>思路：继承是什么 &gt;&gt; JS 继承依赖原型 &gt;&gt; 原型 &gt;&gt; 原型式继承 &gt;&gt; 原型链继承 &gt;&gt; …</p>
+      <div class="outer">
+        <section id="main"><article id="post-inherit-in-js" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/03/13/inherit-in-js/" class="article-date">
+  <time class="dt-published" datetime="2023-03-13T14:41:04.540Z" itemprop="datePublished">2023-03-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      白话 JS 中的继承
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>思路：继承是什么 &gt;&gt; JS 继承依赖原型 &gt;&gt; 原型 &gt;&gt; 原型式继承 &gt;&gt; 原型链继承 &gt;&gt; …</p>
 <p>继承，就是 A 的属性方法可以继承给 B，B 可以继续往下传。 同时，我们还希望</p>
 <ul>
 <li>B 能够新增自己的属性和方法。</li>
@@ -190,100 +206,142 @@
 <p>但我们一般都不会使用 setPrototypeof 函数，为什么？</p>
 <p><em>如果你关心性能，你应该避免设置一个对象的 [[Prototype]]。相反，你应该使用 Object.create()来创建带有你想要的[[Prototype]]的新对象。</em></p>
 
-            <br />
-            <p class="meta">
-                
-
-<a href="/tags/JS-技能树/"> <i class="fas fa-tags"></i>
-    JS 技能树 </a>
-
-            </p>
-        </div>
-
-        <div class="col-sm-3">
-             
-<span><b> TL;DR</b></span>
-<p>
-	Yet another hexo theme.
-</p>
-<hr />
-
-
-<span><b> TL;DR 2</b></span>
-<p>
-	No, not another one :/
-</p>
-<hr />
-
- 
-
-<span
-	><a href="https://twitter.com/hexojs" target="_blank" rel="noopener"
-		><b
-			><i class="fab fa-twitter-square"></i>
-			<i class="fas fa-at"></i>
-			hexojs</b
-		></a
-	></span
->
-<br />
-<a class="twitter-timeline" data-height="800" data-dnt="true" data-chrome="nofooter transparent noheader noborders " target="_blank" rel="noopener" href="https://twitter.com/hexojs?ref_src=twsrc%5Etfw"></a>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-
-        </div>
+      
     </div>
-</div>
-<!-- Menu fade on scroll -->
-<script>
-    var isScrolling;
-    var prevScrollpos = window.pageYOffset;
-    window.addEventListener(
-        'scroll',
-        function(event) {
-            window.clearTimeout(isScrolling);
-            isScrolling = setTimeout(function() {
-                var currentScrollPos = window.pageYOffset;
-                if (prevScrollpos > currentScrollPos) {
-                    $('#navbar').slideDown();
-                } else {
-                    $('#navbar').slideUp();
-                }
-                prevScrollpos = currentScrollPos;
-            }, 66);
-        },
-        false
-    );
-</script>
-
-
-<a class="float-left gradient btn paginationbtn" href="/2023/03/13/hello-page/"><i class="fas fa-chevron-left"></i></a>
-
-
-<a class="float-right gradient btn paginationbtn" href="/2023/03/13/class-in-js/"><i class="fas fa-chevron-right"></i></a>
-
-    </main>
-    <!-- Footer -->
-    <footer class="page-footer">
-  <div class="container">
-    <div class="social-icons">
+    <footer class="article-footer">
+      <a data-url="https://dadaxin.github.io/2023/03/13/inherit-in-js/" data-id="clf6xroh20000jsxz3e6t2lm4" data-title="白话 JS 中的继承" class="article-share-link">Share</a>
       
-      <a href="https://hexo.io/" title="Hexo.io" target="_blank" rel="noopener" class="fas fa-home"></a>
       
-      <a href="https://twitter.com/hexojs" title="@hexojs" target="_blank" rel="noopener" class="fab fa-twitter"></a>
       
-      <a href="https://github.com/RandomAdversary/Gradient/issues" title="Report issue" target="_blank" rel="noopener" class="fas fa-bug"></a>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS-%E6%8A%80%E8%83%BD%E6%A0%91/" rel="tag">JS 技能树</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/03/13/class-in-js/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          白话 JS 中的类
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/03/13/hello-page/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">🎉 Hi, you!</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS-%E6%8A%80%E8%83%BD%E6%A0%91/" rel="tag">JS 技能树</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/JS-%E6%8A%80%E8%83%BD%E6%A0%91/" style="font-size: 10px;">JS 技能树</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/03/13/class-in-js/">白话 JS 中的类</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/13/inherit-in-js/">白话 JS 中的继承</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/13/hello-page/">🎉 Hi, you!</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
       
+      &copy; 2023 DaDaXin<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
-    <!-- After footer scripts -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-    crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-    crossorigin="anonymous"></script>
-</body>
 
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
 </html>
