@@ -11,8 +11,8 @@
   
   <title>
     
-      archive_a: 2023 
-      
+      标签 
+       : 🌳技能树
       
       |
     
@@ -65,76 +65,38 @@
     <div id="app">
 
       <div class="flex-container">
-        <!-- 归档页，展示本站所有文章，按照年份降序归类，url形式：https://yoursite/archives/ -->
+        <!-- 标签详情页，展示某个标签下的文章列表，url形式：https://yoursite/tags/某个标签/ -->
 
-<!-- last: 按年份把文章分组，当前遍历到的年份 -->
-<!-- now: 当前遍历到的文章的发布年份 -->
-<div class="header">
-  <div class="avatar">
-    <a href="/">
-      <!-- 头像取消懒加载，添加no-lazy -->
-      
-        <img src="/images/avatar.png" alt="">
-      
-    </a>
-    <div class="nickname"><a href="/">DaDaXin</a></div>
+<div class="container tag-details">
+  <div class="content-title">
+    <h2>
+      <span>🌳技能树</span>
+    </h2>
   </div>
-  <div class="navbar">
-    <ul>
-      
-        <li class="nav-item" data-path="/">
-          <a href="/">主页</a>
-        </li>
-      
-        <li class="nav-item" data-path="/archives/">
-          <a href="/archives/">归档</a>
-        </li>
-      
-        <li class="nav-item" data-path="/tags/">
-          <a href="/tags/">标签</a>
-        </li>
-      
-        <li class="nav-item" data-path="/about/">
-          <a href="/about/">关于</a>
-        </li>
-      
-    </ul>
-  </div>
-</div>
-
-
-<script src="/js/activeNav.js"></script>
-
-
-<div class="container archives">
-  <div class="post-list">
-    
-        <!-- 后续文章的发布年份呈现 -->
-        <div class="content-title">
-          <h2>
-            <span>2023</span>
-          </h2>
-        </div>
-      
+  
+    <div class="post-list">
       <div class="post-item" title="👾 白话 JS 中的类">
-        <div class="time-m-d">03-13</div>
-        <div class="title">
-          <a href="/2023/03/13/class-in-js/">
-            <span>👾 白话 JS 中的类</span>
-          </a>
-        </div>
+        <span class="time-m-d">2023-03-13</span>
+        <a href="/2023/03/13/class-in-js/">
+          <span>👾 白话 JS 中的类</span>
+        </a>
       </div>
-    
+    </div>
+  
+    <div class="post-list">
       <div class="post-item" title="👾 白话 JS 中的继承">
-        <div class="time-m-d">03-13</div>
-        <div class="title">
-          <a href="/2023/03/13/inherit-in-js/">
-            <span>👾 白话 JS 中的继承</span>
-          </a>
-        </div>
+        <span class="time-m-d">2023-03-13</span>
+        <a href="/2023/03/13/inherit-in-js/">
+          <span>👾 白话 JS 中的继承</span>
+        </a>
       </div>
+    </div>
+  
+  <nav class="post-navigation">
     
-  </div>
+    <span class="page-num">1 / 1</span>
+    
+  </nav>
 </div>
 
         

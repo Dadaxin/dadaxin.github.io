@@ -11,7 +11,7 @@
   
   <title>
     
-      archive_a: 2023 
+      标签 
       
       
       |
@@ -65,11 +65,42 @@
     <div id="app">
 
       <div class="flex-container">
-        <!-- 归档页，展示本站所有文章，按照年份降序归类，url形式：https://yoursite/archives/ -->
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursitpagee/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
 
-<!-- last: 按年份把文章分组，当前遍历到的年份 -->
-<!-- now: 当前遍历到的文章的发布年份 -->
-<div class="header">
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+  <!-- 标签页 url形式：https://yoursite/tags/ -->
+  <div class="header">
   <div class="avatar">
     <a href="/">
       <!-- 头像取消懒加载，添加no-lazy -->
@@ -106,36 +137,20 @@
 <script src="/js/activeNav.js"></script>
 
 
-<div class="container archives">
-  <div class="post-list">
-    
-        <!-- 后续文章的发布年份呈现 -->
-        <div class="content-title">
-          <h2>
-            <span>2023</span>
-          </h2>
-        </div>
-      
-      <div class="post-item" title="👾 白话 JS 中的类">
-        <div class="time-m-d">03-13</div>
-        <div class="title">
-          <a href="/2023/03/13/class-in-js/">
-            <span>👾 白话 JS 中的类</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="👾 白话 JS 中的继承">
-        <div class="time-m-d">03-13</div>
-        <div class="title">
-          <a href="/2023/03/13/inherit-in-js/">
-            <span>👾 白话 JS 中的继承</span>
-          </a>
-        </div>
-      </div>
-    
+  <div class="container tag-index">
+    <div>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%F0%9F%8C%B3%E6%8A%80%E8%83%BD%E6%A0%91/" rel="tag">🌳技能树</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%F0%9F%90%9CJS/" rel="tag">🐜JS</a><span class="tag-list-count">2</span></li></ul>
+    </div>
   </div>
-</div>
+  
+
+  
+
+  
+
+  
+
+  
 
         
 <div class="footer">
@@ -389,6 +404,24 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + tags + '&url=' + https%3A%2F%2Fdadaxin.github.io%2Ftags%2Findex.html + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://dadaxin.github.io/tags/index.html" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>
