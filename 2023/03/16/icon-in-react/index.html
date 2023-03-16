@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="DaDaXin" />
+  <meta name="description" content="" />
+  
+  
+  <title>
+    
+      React 项目中使用图标 
+      
+      
+      |
+    
+     DaDaXin&#39;s Little World
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+  <body>
+    <div id="app">
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursitpagee/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">React 项目中使用图标</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+          2023-03-16 22:06:16
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="标签"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/%F0%9F%90%9CReact/" title="🐜React">
+                    🐜React
+                  </a>
+                </span>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/%F0%9F%8E%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" title="🎁解决方案">
+                    🎁解决方案
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <p>除了 iconfont 格式和 svg 格式，之前常用的有 image sprite，但因为图片生成和维护困难等原因，现在用得不多。</p>
+<h2 id="使用-iconfont-格式"><a href="#使用-iconfont-格式" class="headerlink" title="使用 iconfont 格式"></a>使用 iconfont 格式</h2><p>做法就是下载 font 文件，添加到 public 文件夹，在 index.html 页面引入字体文件。然后就可以在使用时作为 class 使用。</p>
+<p>比如，如果使用阿里图标库：</p>
+<ol>
+<li>下载文件去阿里图标库官网（<a target="_blank" rel="noopener" href="https://www.iconfont.cn/%EF%BC%89">https://www.iconfont.cn/）</a>，选择想要的图标添加至购物车，点击购物车里的添加到项目，项目中点击下载到本地，会有一个 font 文件夹。</li>
+<li>在项目中引入文件。将文件夹放到 public 中，并在 index.html 的 head 中加上 <code>&lt;link rel=&quot;stylesheet&quot; href=&quot;./font/iconfont.css&quot;&gt;</code> 。</li>
+<li>使用。直接写 <code>&lt;i className=&quot;iconfont icon-all&quot;&gt;&lt;/i&gt;</code> 或 <code>&lt;i class=&quot;iconfont icon-all&quot;&gt;&lt;/i&gt;</code> 。</li>
+</ol>
+<p>引入的图标遵循模块化。</p>
+<h2 id="使用-svg-格式"><a href="#使用-svg-格式" class="headerlink" title="使用 svg 格式"></a>使用 svg 格式</h2><p>SVG 是一种基于 XML 语法的图像格式，全称是可缩放矢量图（Scalable Vector Graphics）。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  test<span class="punctuation">:</span> /\.svg$/<span class="punctuation">,</span></span><br><span class="line">  use<span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span>loader<span class="punctuation">:</span> &#x27;svg-sprite-loader&#x27;<span class="punctuation">,</span> options<span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      loader<span class="punctuation">:</span> &#x27;svgo-loader&#x27;<span class="punctuation">,</span> options<span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        plugins<span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">          <span class="punctuation">&#123;</span>removeAttrs<span class="punctuation">:</span> <span class="punctuation">&#123;</span>attrs<span class="punctuation">:</span> &#x27;fill&#x27;<span class="punctuation">&#125;</span><span class="punctuation">&#125;</span> <span class="comment">// 意思是移除 fill 属性</span></span><br><span class="line">        <span class="punctuation">]</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="方式一-当作一个组件直接复制在-JSX-中"><a href="#方式一-当作一个组件直接复制在-JSX-中" class="headerlink" title="方式一 当作一个组件直接复制在 JSX 中"></a>方式一 当作一个组件直接复制在 JSX 中</h3><p>或者觉得直接添加代码太多有点丑陋，可以封装成一个组件。</p>
+<h3 id="方式二-use-标签"><a href="#方式二-use-标签" class="headerlink" title="方式二 use 标签"></a>方式二 use 标签</h3><p>svg 文件单独存放，使用 <code>use</code> 标签 + <code>symbol</code> 的 <code>id</code> 属性。</p>
+<p>比如，文件如下：test.svg</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;svg xmlns=<span class="string">&quot;http://www.w3.org/2000/svg&quot;</span> <span class="attr">xmlns</span>:xlink=<span class="string">&quot;http://www.w3.org/1999/xlink&quot;</span> style=<span class="string">&quot;position: absolute; width: 0; height: 0&quot;</span> id=<span class="string">&quot;__SVG_SPRITE_NODE__&quot;</span>&gt;</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">symbol</span> <span class="attr">id</span>=<span class="string">&quot;bank&quot;</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.w3.org/2000/svg&quot;</span> <span class="attr">xmlns:xlink</span>=<span class="string">&quot;http://www.w3.org/1999/xlink&quot;</span> <span class="attr">class</span>=<span class="string">&quot;icon&quot;</span> <span class="attr">viewBox</span>=<span class="string">&quot;0 0 1024 1024&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">defs</span>&gt;</span><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span><span class="tag">&lt;/<span class="name">defs</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">rect</span> <span class="attr">width</span>=<span class="string">&quot;100%&quot;</span> <span class="attr">height</span>=<span class="string">&quot;100%&quot;</span> <span class="attr">style</span>=<span class="string">&quot;fill:rgb(153, 238, 172);stroke-width:2;stroke:rgb(0,0,0)&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">rect</span>&gt;</span>    </span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">symbol</span>&gt;</span></span></span><br><span class="line">&lt;/svg&gt;</span><br></pre></td></tr></table></figure>
+
+<p>使用：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>(<span class="string">&#x27;./test.svg&#x27;</span>)</span><br><span class="line"></span><br><span class="line">&lt;svg&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">use</span> <span class="attr">xlink:href</span>=<span class="string">&quot;#bank&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">use</span>&gt;</span></span></span><br><span class="line">&lt;/svg&gt;</span><br></pre></td></tr></table></figure>
+
+<p><code>symbol</code> 中的 <code>id</code> 和 <code>use</code> 中的 <code>href</code> 要对应才行。此处使用 <code>require</code>，可以避免 TreeShaking。</p>
+<p>在 CRA 项目中使用 svg，可以借助插件 svg-sprite-loader 更好地组织 svg 文件。同时可能还需要使用 svgo-loader 用来处理一些修改 svg 时会报错的问题的，比如，有些 svg 自身含有 fill 属性，我们后期给它添加颜色会失败。</p>
+<p>配置如下：webpack.config.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">module</span>: &#123;</span><br><span class="line">    <span class="attr">rules</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">test</span>: <span class="regexp">/\.svg$/</span>,</span><br><span class="line">        <span class="attr">use</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="attr">loader</span>: <span class="string">&quot;svg-sprite-loader&quot;</span>,</span><br><span class="line">            <span class="attr">include</span>: [<span class="title function_">resolve</span>(<span class="string">&quot;src/icons&quot;</span>)],</span><br><span class="line">            <span class="attr">options</span>: &#123;</span><br><span class="line">              <span class="attr">symbolId</span>: <span class="string">&quot;icon-[name]&quot;</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">test</span>: <span class="regexp">/\.(png|jpe?g|gif|svg)(\?.*)?$/</span>,</span><br><span class="line">        <span class="attr">loader</span>: <span class="string">&quot;url-loader&quot;</span>,</span><br><span class="line">        <span class="comment">// 排除字体图标文件</span></span><br><span class="line">        <span class="attr">exclude</span>: [path.<span class="title function_">resolve</span>(__dirname, <span class="string">&quot;../src/icons/svg&quot;</span>)],</span><br><span class="line">        <span class="attr">options</span>: &#123;</span><br><span class="line">          <span class="attr">limit</span>: <span class="number">10000</span>,</span><br><span class="line">          <span class="attr">name</span>: utils.<span class="title function_">assetsPath</span>(<span class="string">&quot;img/[name].[hash:7].[ext]&quot;</span>),</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>如果你用的 craco，配置如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">webpack</span>: &#123;</span><br><span class="line">  <span class="attr">configure</span>: <span class="function">(<span class="params">webpackConfig, &#123; env, paths &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">    webpackConfig.<span class="property">module</span>.<span class="property">rules</span>[<span class="number">1</span>].<span class="property">oneOf</span> = [</span><br><span class="line">      ...[</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">test</span>: <span class="regexp">/\.svg$/</span>,</span><br><span class="line">          <span class="attr">include</span>: [<span class="title function_">pathResolve</span>(<span class="string">&quot;src/icons&quot;</span>)],</span><br><span class="line">          <span class="attr">use</span>: [</span><br><span class="line">            &#123; <span class="attr">loader</span>: <span class="string">&quot;svg-sprite-loader&quot;</span>, <span class="attr">options</span>: &#123;&#125; &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">              <span class="attr">loader</span>: <span class="string">&quot;svgo-loader&quot;</span>,</span><br><span class="line">              <span class="attr">options</span>: &#123;</span><br><span class="line">                <span class="attr">plugins</span>: [</span><br><span class="line">                  <span class="comment">// 插件名字必须加</span></span><br><span class="line">                  &#123;</span><br><span class="line">                    <span class="attr">name</span>: <span class="string">&quot;removeAttrs&quot;</span>,</span><br><span class="line">                    <span class="attr">params</span>: &#123;</span><br><span class="line">                      <span class="attr">attrs</span>: <span class="string">&quot;(fill|stroke)&quot;</span>,</span><br><span class="line">                    &#125;,</span><br><span class="line">                  &#125;,</span><br><span class="line">                ],</span><br><span class="line">              &#125;,</span><br><span class="line">            &#125;,</span><br><span class="line">          ],</span><br><span class="line">        &#125;,</span><br><span class="line">      ],</span><br><span class="line">      ...webpackConfig.<span class="property">module</span>.<span class="property">rules</span>[<span class="number">1</span>].<span class="property">oneOf</span>,</span><br><span class="line">    ];</span><br><span class="line">    <span class="keyword">return</span> webpackConfig;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>该插件会使得所有的 icon 文件形成如下这样，也就是 svg sprite。<code>symbol</code> 的 <code>id</code> 如果不特别指定，就是你的文件名，在上述配置中我们指定了 <code>symbolId</code> 为 <code>icon-[name]</code>。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.w3.org/2000/svg&quot;</span> <span class="attr">xmlns:xlink</span>=<span class="string">&quot;http://www.w3.org/1999/xlink&quot;</span> <span class="attr">id</span>=<span class="string">&quot;__SVG_SPRITE_NODE__&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">symbol</span> <span class="attr">class</span>=<span class="string">&quot;icon&quot;</span> <span class="attr">viewBox</span>=<span class="string">&quot;0 0 1024 1024&quot;</span> <span class="attr">id</span>=<span class="string">&quot;icon名&quot;</span>&gt;</span>&#123;&#123;省略的icon path&#125;&#125;<span class="tag">&lt;/<span class="name">symbol</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">symbol</span> <span class="attr">class</span>=<span class="string">&quot;icon&quot;</span> <span class="attr">viewBox</span>=<span class="string">&quot;0 0 1024 1024&quot;</span> <span class="attr">id</span>=<span class="string">&quot;icon名&quot;</span>&gt;</span>&#123;&#123;省略的icon path&#125;&#125;<span class="tag">&lt;/<span class="name">symbol</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在使用的时候，</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;icons/money.svg&#x27;</span></span><br><span class="line"></span><br><span class="line">&lt;svg className=&#123;<span class="string">&quot;icon&quot;</span>&#125;&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">use</span> <span class="attr">xlinkHref</span>=<span class="string">&quot;#money&quot;</span>/&gt;</span></span></span><br><span class="line">&lt;/svg&gt;</span><br></pre></td></tr></table></figure>
+
+<p><code>import xxx from</code>  需要是导出作为模块，但是 svg 没有 export default 导出就会报错。所以直接 <code>import &#39;icons/money.svg&#39;</code></p>
+<p>可以看到，我们只能每次使用时引入文件。有没有傻瓜式批量引入的方式呢？</p>
+<p>全部一次性引入，然后封装一个 Icon，傻瓜式使用。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="title function_">importAll</span> = requireContext =&gt; requireContext.<span class="title function_">keys</span>().<span class="title function_">forEach</span>(requireContext);</span><br><span class="line"><span class="keyword">try</span> &#123; </span><br><span class="line">  importAll(<span class="built_in">require</span>.<span class="title function_">context</span>(<span class="string">&#x27;icons&#x27;</span>, <span class="literal">true</span>, <span class="regexp">/\.svg$/</span>)); </span><br><span class="line">&#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(error);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">Icon</span> = props =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123;name, ...rest&#125; = props;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">svg</span> &#123;<span class="attr">...rest</span>&#125;&gt;</span></span></span><br><span class="line"><span class="language-xml">      &#123;name &amp;&amp; <span class="tag">&lt;<span class="name">use</span> <span class="attr">xlinkHref</span>=<span class="string">&#123;</span>&#x27;#&#x27; + <span class="attr">props.name</span>&#125; /&gt;</span>&#125;</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">Icon</span>;</span><br></pre></td></tr></table></figure>
+
+<p><code>require.context</code> 是 webpack 提供的。</p>
+<p>此时，就可如下使用： </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import Icon from &#x27;./Icon&#x27;;</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">Icon</span> <span class="attr">name</span>=<span class="string">&quot;tag&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>我们可能还需要使用 svgo-loader。后者是用来处理一些修改 svg 时会报错的问题的，比如，有些 svg 自身含有 fill 属性，我们后期给它添加颜色会失败。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">test</span>: <span class="regexp">/\.svg$/</span>,</span><br><span class="line">  <span class="attr">use</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">loader</span>: <span class="string">&#x27;svgo-loader&#x27;</span>, <span class="attr">options</span>: &#123;</span><br><span class="line">        <span class="attr">plugins</span>: [</span><br><span class="line">          &#123;<span class="attr">removeAttrs</span>: &#123;<span class="attr">attrs</span>: <span class="string">&#x27;fill&#x27;</span>&#125;&#125; <span class="comment">// 意思是移除 fill 属性</span></span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="方式三-使用插件-react-svg-传入路径即可使用"><a href="#方式三-使用插件-react-svg-传入路径即可使用" class="headerlink" title="方式三 使用插件 react-svg 传入路径即可使用"></a>方式三 使用插件 react-svg 传入路径即可使用</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import ReactSVG from &#x27;react-svg&#x27;</span><br><span class="line"></span><br><span class="line">return <span class="tag">&lt;<span class="name">ReactSVG</span> <span class="attr">src</span>=<span class="string">&quot;react.svg&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<p>参考：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6941265977485033486">React项目使用SVG</a></p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2023/03/13/class-in-js/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+              2023-03-16 22:06:16
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="标签"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/%F0%9F%90%9CReact/" title="🐜React">
+                        #🐜React
+                      </a>
+                    </span>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/%F0%9F%8E%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" title="🎁解决方案">
+                        #🎁解决方案
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-iconfont-%E6%A0%BC%E5%BC%8F"><span class="toc-text">使用 iconfont 格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-svg-%E6%A0%BC%E5%BC%8F"><span class="toc-text">使用 svg 格式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E5%BC%8F%E4%B8%80-%E5%BD%93%E4%BD%9C%E4%B8%80%E4%B8%AA%E7%BB%84%E4%BB%B6%E7%9B%B4%E6%8E%A5%E5%A4%8D%E5%88%B6%E5%9C%A8-JSX-%E4%B8%AD"><span class="toc-text">方式一 当作一个组件直接复制在 JSX 中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E5%BC%8F%E4%BA%8C-use-%E6%A0%87%E7%AD%BE"><span class="toc-text">方式二 use 标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E5%BC%8F%E4%B8%89-%E4%BD%BF%E7%94%A8%E6%8F%92%E4%BB%B6-react-svg-%E4%BC%A0%E5%85%A5%E8%B7%AF%E5%BE%84%E5%8D%B3%E5%8F%AF%E4%BD%BF%E7%94%A8"><span class="toc-text">方式三 使用插件 react-svg 传入路径即可使用</span></a></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="wechat" href="">
+            <i class="iconfont icon-wechat"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + React%20%E9%A1%B9%E7%9B%AE%E4%B8%AD%E4%BD%BF%E7%94%A8%E5%9B%BE%E6%A0%87 + '&url=' + https%3A%2F%2Fdadaxin.github.io%2F2023%2F03%2F16%2Ficon-in-react%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://dadaxin.github.io/2023/03/16/icon-in-react/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  </body>
+</html>
