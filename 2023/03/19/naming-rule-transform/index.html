@@ -11,7 +11,7 @@
   
   <title>
     
-      archive_a: 2023 
+      对象中属性命名方式转换（下划线-驼峰式互相转换） 
       
       
       |
@@ -65,95 +65,172 @@
     <div id="app">
 
       <div class="flex-container">
-        <!-- 归档页，展示本站所有文章，按照年份降序归类，url形式：https://yoursite/archives/ -->
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursitpagee/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
 
-<!-- last: 按年份把文章分组，当前遍历到的年份 -->
-<!-- now: 当前遍历到的文章的发布年份 -->
-<div class="header">
-  <div class="avatar">
-    <a href="/">
-      <!-- 头像取消懒加载，添加no-lazy -->
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">对象中属性命名方式转换（下划线-驼峰式互相转换）</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+          2023-03-19 11:41:10
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="标签"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/%F0%9F%90%9CJS/" title="🐜JS">
+                    🐜JS
+                  </a>
+                </span>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/%F0%9F%8E%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" title="🎁解决方案">
+                    🎁解决方案
+                  </a>
+                </span>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/Snippet/" title="Snippet">
+                    Snippet
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+      </div>
       
-        <img src="/images/avatar.png" alt="">
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2023/03/16/icon-in-react/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+              2023-03-19 11:41:10
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="标签"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/%F0%9F%90%9CJS/" title="🐜JS">
+                        #🐜JS
+                      </a>
+                    </span>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/%F0%9F%8E%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" title="🎁解决方案">
+                        #🎁解决方案
+                      </a>
+                    </span>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/Snippet/" title="Snippet">
+                        #Snippet
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
+        </div>
       
-    </a>
-    <div class="nickname"><a href="/">DaDaXin</a></div>
+    </div>
+    
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+  
+    <script async type="text/javascript" src="/plugins/valine.min.js" onload="loadValineSuc(this)"></script>
+  
+
+  <div id="vcomments"></div>
+
+  <script>
+    function loadValineSuc() {
+      new Valine({
+        el: '#vcomments',
+        appId: 'LsFV3b9QJPas2O6VRJCs3GFH-9Nh9j0Va',
+        appKey: 'cchkKygFM5QyNjZSzBhyN11M',
+        placeholder: '欢映咣~临！',
+        avatar: 'retro',
+        lang: 'zh-CN'
+      })
+    }
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
+
+
+
+      </div>
+    
   </div>
-  <div class="navbar">
-    <ul>
-      
-        <li class="nav-item" data-path="/">
-          <a href="/">主页</a>
-        </li>
-      
-        <li class="nav-item" data-path="/archives/">
-          <a href="/archives/">归档</a>
-        </li>
-      
-        <li class="nav-item" data-path="/tags/">
-          <a href="/tags/">标签</a>
-        </li>
-      
-        <li class="nav-item" data-path="/about/">
-          <a href="/about/">关于</a>
-        </li>
-      
-    </ul>
-  </div>
-</div>
 
-
-<script src="/js/activeNav.js"></script>
-
-
-<div class="container archives">
-  <div class="post-list">
-    
-        <!-- 后续文章的发布年份呈现 -->
-        <div class="content-title">
-          <h2>
-            <span>2023</span>
-          </h2>
-        </div>
-      
-      <div class="post-item" title="对象中属性命名方式转换（下划线-驼峰式互相转换）">
-        <div class="time-m-d">03-19</div>
-        <div class="title">
-          <a href="/2023/03/19/naming-rule-transform/">
-            <span>对象中属性命名方式转换（下划线-驼峰式互相转换）</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="React 项目中使用图标">
-        <div class="time-m-d">03-16</div>
-        <div class="title">
-          <a href="/2023/03/16/icon-in-react/">
-            <span>React 项目中使用图标</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="白话 JS 中的类">
-        <div class="time-m-d">03-13</div>
-        <div class="title">
-          <a href="/2023/03/13/class-in-js/">
-            <span>白话 JS 中的类</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="白话 JS 中的继承">
-        <div class="time-m-d">03-13</div>
-        <div class="title">
-          <a href="/2023/03/13/inherit-in-js/">
-            <span>白话 JS 中的继承</span>
-          </a>
-        </div>
-      </div>
-    
-  </div>
-</div>
 
         
 <div class="footer">
@@ -401,6 +478,24 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E5%AF%B9%E8%B1%A1%E4%B8%AD%E5%B1%9E%E6%80%A7%E5%91%BD%E5%90%8D%E6%96%B9%E5%BC%8F%E8%BD%AC%E6%8D%A2%EF%BC%88%E4%B8%8B%E5%88%92%E7%BA%BF-%E9%A9%BC%E5%B3%B0%E5%BC%8F%E4%BA%92%E7%9B%B8%E8%BD%AC%E6%8D%A2%EF%BC%89 + '&url=' + https%3A%2F%2Fdadaxin.github.io%2F2023%2F03%2F19%2Fnaming-rule-transform%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://dadaxin.github.io/2023/03/19/naming-rule-transform/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>
