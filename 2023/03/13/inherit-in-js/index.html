@@ -310,6 +310,31 @@
 
 
 
+  
+    <script async type="text/javascript" src="/plugins/valine.min.js" onload="loadValineSuc(this)"></script>
+  
+
+  <div id="vcomments"></div>
+
+  <script>
+    function loadValineSuc() {
+      new Valine({
+        el: '#vcomments',
+        appId: 'LsFV3b9QJPas2O6VRJCs3GFH-9Nh9j0Va',
+        appKey: 'cchkKygFM5QyNjZSzBhyN11M',
+        placeholder: '欢映咣~临！',
+        avatar: 'retro',
+        lang: 'zh-CN'
+      })
+    }
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
 
 
 
