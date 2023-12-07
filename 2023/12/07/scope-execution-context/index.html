@@ -117,6 +117,17 @@
           2023-12-07 07:41:08
         </span>
         
+              <span class="post-categories">
+                <i class="iconfont icon-bookmark" title="分类"></i>
+                
+                <span class="span--category">
+                  <a href="/categories/%E3%80%8A%E9%83%BD-4202-%E5%B9%B4%E4%BA%86%EF%BC%8C%E6%88%91%E8%BF%98%E5%9C%A8%E8%AF%BB%E7%BA%A2%E5%AE%9D%E4%B9%A6%EF%BC%81%E3%80%8B/" title="《都 4202 年了，我还在读红宝书！》">
+                    <b>#</b> 《都 4202 年了，我还在读红宝书！》
+                  </a>
+                </span>
+                
+              </span>
+          
               <span class="post-tags">
                 <i class="iconfont icon-tags mr-10" title="标签"></i>
                 
@@ -143,10 +154,23 @@
 </blockquote>
 <p>原始值和引用值有何不同？</p>
 <ul>
-<li>存储方式不同：  上面提到了，引用值是存储在特殊的内存空间中，我们称其为堆内存。变量操作的的是该对象的地址引用，而且如果不主动清空，只能借助于引擎的垃圾回收机制销毁。  原始值是直接存储在执行上下文栈中的，我们称为栈内存。变量操作的就是原始值本身，而且在代码运行完，即执行上下文栈清空时，也就意味着原始值被销毁了。下面会详细说到执行上下文栈。</li>
-<li>是否能有属性：  引用值的属性是可以随意添加、修改和删除的，称为动态属性（4.1.1 动态属性）。原始值是没有属性的，尽管我们给原始值添加属性也不会报错。  不报错的原因：  原始类型的初始化除了使用原始字面量的方式，还可以使用 <code>new</code> 运算符，比如声明一个字符串类型的数据：  <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用字面量</span></span><br><span class="line"><span class="keyword">var</span> name1 = <span class="string">&#x27;li&#x27;</span></span><br><span class="line"><span class="comment">// 使用 new 运算符</span></span><br><span class="line"><span class="keyword">var</span> name2 = <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&#x27;li&#x27;</span>)</span><br></pre></td></tr></table></figure>
-  这两种方式生成的值在使用时没什么区别，但使用 <code>new</code> 时，相当于生成了一个对象，对象是可以添加属性的。当我们给使用字面量初始化的 <code>name1</code> 添加属性时，JS 引擎会隐式地将 name1 也转换成一个 String 对象，所以添加属性也不会报错。</li>
-<li>复制方式不同：（4.1.2 复制值）  在通过变量复制值的时候的表现会不同。如果变量指向原始值，会直接完全克隆一份新的值，新的变量指向新的值。如果变量指向引用值，则是复制引用值的地址，新旧两个变量最终指向的还是同一个存储在堆内存中的对象。如下图，最终导致，当我们操作 <code>obj</code> 和 <code>obj2</code> 时，其实都是操作的同一个对象，修改 <code>obj1</code> 变量，其实 <code>obj2</code> 也会变。  <img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/f0abc7ea-df17-418d-9303-c09de0c55ffe/1884ff40-2619-4464-aa50-6b87d877ea0c/Untitled.png" alt="Untitled">  <img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/f0abc7ea-df17-418d-9303-c09de0c55ffe/16917810-43db-43d9-961d-7d7439957bda/Untitled.png" alt="Untitled">  由于在复制值的时候，不太一样。也导致在传递函数参数时（4.1.3 传递参数），表现会有所不同。传递函数参数本质上就是在函数内部新增一个内部属性复制外部的值到内部，如果参数是引用值，仅仅复制的是地址，还是指向同一个对象，所以在函数内部修改传入的引用值，外部的引用值也会发生改变。  <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">setName</span>(<span class="params">obj</span>) &#123;</span><br><span class="line">	obj.<span class="property">name</span> = <span class="string">&quot;Nicholas&quot;</span>;</span><br><span class="line">	<span class="comment">// 传入 person 时，相当于 </span></span><br><span class="line">	<span class="comment">// var obj = person</span></span><br><span class="line">	<span class="comment">// obj.name = &quot;Nicholas&quot;;</span></span><br><span class="line">	<span class="comment">// obj 和 person 其实指向同一个对象</span></span><br><span class="line">	<span class="comment">// 所以 person.name === &quot;Nicholas&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> person = <span class="keyword">new</span> <span class="title class_">Object</span>();</span><br><span class="line"><span class="title function_">setName</span>(person);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(person.<span class="property">name</span>); <span class="comment">// &quot;Nicholas&quot;</span></span><br></pre></td></tr></table></figure>
+<li><p>存储方式不同：</p>
+<p>  上面提到了，引用值是存储在特殊的内存空间中，我们称其为堆内存。变量操作的的是该对象的地址引用，而且如果不主动清空，只能借助于引擎的垃圾回收机制销毁。</p>
+<p>  原始值是直接存储在执行上下文栈中的，我们称为栈内存。变量操作的就是原始值本身，而且在代码运行完，即执行上下文栈清空时，也就意味着原始值被销毁了。下面会详细说到执行上下文栈。</p>
+</li>
+<li><p>是否能有属性：</p>
+<p>  引用值的属性是可以随意添加、修改和删除的，称为动态属性（4.1.1 动态属性）。原始值是没有属性的，尽管我们给原始值添加属性也不会报错。</p>
+<p>  不报错的原因：</p>
+<p>  原始类型的初始化除了使用原始字面量的方式，还可以使用 <code>new</code> 运算符，比如声明一个字符串类型的数据：</p>
+  <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用字面量</span></span><br><span class="line"><span class="keyword">var</span> name1 = <span class="string">&#x27;li&#x27;</span></span><br><span class="line"><span class="comment">// 使用 new 运算符</span></span><br><span class="line"><span class="keyword">var</span> name2 = <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&#x27;li&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>  这两种方式生成的值在使用时没什么区别，但使用 <code>new</code> 时，相当于生成了一个对象，对象是可以添加属性的。当我们给使用字面量初始化的 <code>name1</code> 添加属性时，JS 引擎会隐式地将 name1 也转换成一个 String 对象，所以添加属性也不会报错。</p>
+</li>
+<li><p>复制方式不同：（4.1.2 复制值）</p>
+<p>  在通过变量复制值的时候的表现会不同。如果变量指向原始值，会直接完全克隆一份新的值，新的变量指向新的值。如果变量指向引用值，则是复制引用值的地址，新旧两个变量最终指向的还是同一个存储在堆内存中的对象。如下图，最终导致，当我们操作 <code>obj</code> 和 <code>obj2</code> 时，其实都是操作的同一个对象，修改 <code>obj1</code> 变量，其实 <code>obj2</code> 也会变。</p>
+<p>  <img src="/images/scope-execution-context/1.png" alt="Untitled"></p>
+<p>  <img src="/images/scope-execution-context/2.png" alt="Untitled"></p>
+<p>  由于在复制值的时候，不太一样。也导致在传递函数参数时（4.1.3 传递参数），表现会有所不同。传递函数参数本质上就是在函数内部新增一个内部属性复制外部的值到内部，如果参数是引用值，仅仅复制的是地址，还是指向同一个对象，所以在函数内部修改传入的引用值，外部的引用值也会发生改变。</p>
+  <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">setName</span>(<span class="params">obj</span>) &#123;</span><br><span class="line">	obj.<span class="property">name</span> = <span class="string">&quot;Nicholas&quot;</span>;</span><br><span class="line">	<span class="comment">// 传入 person 时，相当于 </span></span><br><span class="line">	<span class="comment">// var obj = person</span></span><br><span class="line">	<span class="comment">// obj.name = &quot;Nicholas&quot;;</span></span><br><span class="line">	<span class="comment">// obj 和 person 其实指向同一个对象</span></span><br><span class="line">	<span class="comment">// 所以 person.name === &quot;Nicholas&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> person = <span class="keyword">new</span> <span class="title class_">Object</span>();</span><br><span class="line"><span class="title function_">setName</span>(person);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(person.<span class="property">name</span>); <span class="comment">// &quot;Nicholas&quot;</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h3 id="现在我们充分了解了这两种类型的区别。JS-引擎会识别值的类型，将它们存储在内存中不同的地方，并通过“执行上下文”来管理这些值的“作用域”和生命周期。这是运行-JS-代码的基础。（4-2-执行上下文和作用域）"><a href="#现在我们充分了解了这两种类型的区别。JS-引擎会识别值的类型，将它们存储在内存中不同的地方，并通过“执行上下文”来管理这些值的“作用域”和生命周期。这是运行-JS-代码的基础。（4-2-执行上下文和作用域）" class="headerlink" title="现在我们充分了解了这两种类型的区别。JS 引擎会识别值的类型，将它们存储在内存中不同的地方，并通过“执行上下文”来管理这些值的“作用域”和生命周期。这是运行 JS 代码的基础。（4.2 执行上下文和作用域）"></a>现在我们充分了解了这两种类型的区别。JS 引擎会识别值的类型，将它们存储在内存中不同的地方，并通过“执行上下文”来管理这些值的“作用域”和生命周期。这是运行 JS 代码的基础。（4.2 执行上下文和作用域）</h3><p>🏷️ 执行上下文</p>
@@ -164,9 +188,9 @@
 
 <p>在执行 <code>sayHello(1)</code> 的时候，首先会创建一个全局上下文，然后遇见函数创建函数上下文，函数执行结束时，弹出该执行上下文。</p>
 <p>当执行到 <code>switch(number)</code> 这行时，上下文栈如下：</p>
-<p><img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/f0abc7ea-df17-418d-9303-c09de0c55ffe/691fe173-6ea1-4496-a6ca-250681c3198c/Untitled.png" alt="Untitled"></p>
+<p><img src="/images/scope-execution-context/3.png" alt="Untitled"></p>
 <p>当执行到 <code>console.log(</code>hello ${name}<code>)</code> 时，上下文栈如下：</p>
-<p><img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/f0abc7ea-df17-418d-9303-c09de0c55ffe/6c98c67b-5df0-4c39-bd2d-c901d17c6dee/Untitled.png" alt="Untitled"></p>
+<p><img src="/images/scope-execution-context/4.png" alt="Untitled"></p>
 <p>🏷️ 变量对象 &amp; 词法环境</p>
 <blockquote>
 <p>变量或函数的上下文决定了它们可以访问哪些数据，以及它们的行为。每个上下文都有一个关联的变量对象（ variable object），而这个上下文中定义的所有变量和函数都存在于这个对象上。</p>
@@ -177,11 +201,9 @@
 </blockquote>
 <p>基于上面定义，当执行到 <code>switch(number)</code> 这行时，会有：</p>
 <p><img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/f0abc7ea-df17-418d-9303-c09de0c55ffe/de7e31c6-ee24-4391-a515-0f8a29a67c04/Untitled.png" alt="执行到 `switch(number)` 时的执行上下文栈"></p>
-<p>执行到 <code>switch(number)</code> 时的执行上下文栈</p>
 <p>其中 <code>arguments</code> 即包含 <code>number</code>。</p>
 <p>当执行到 <code>console.log(</code>hello ${name}<code>)</code> 时，上下文栈如下：</p>
-<p><img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/f0abc7ea-df17-418d-9303-c09de0c55ffe/472027ee-6bb6-475d-a6b4-4abcec2f1a38/Untitled.png" alt="执行到 `console.log(`hello ${name}`)` 时的执行上下文栈"></p>
-<p>执行到 <code>console.log(</code>hello ${name}<code>)</code> 时的执行上下文栈</p>
+<p><img src="/images/scope-execution-context/5.png" alt="执行到 `console.log(`hello ${name}`)` 时的执行上下文栈"></p>
 <p>🏷️ 作用域 &amp; 作用域链 &amp; 作用域链增强</p>
 <p>变量的可见区域我们就称为作用域。（作用域，可以作用到的范围，即可以被访问的范围）。一般来说，一个执行上下文会形成一个作用域层级。也就是说在一个执行上下文中执行代码时，该执行上下文中声明的变量是可以被访问到的。</p>
 <p>所以，由执行到 <code>switch(number)</code> 时的执行上下文（图见上文），我们可以得知，在 <code>getName</code> 上下文中，我们现在只能访问到 <code>arguments</code> 对象中的 <code>number</code> ，那为什么我们还能访问到 <code>name</code> 呢？</p>
@@ -270,6 +292,17 @@
               2023-12-07 07:41:08
             </span>
             
+                  <span class="post-categories">
+                    <i class="iconfont icon-bookmark" title="分类"></i>
+                    
+                    <span class="span--category">
+                      <a href="/categories/%E3%80%8A%E9%83%BD-4202-%E5%B9%B4%E4%BA%86%EF%BC%8C%E6%88%91%E8%BF%98%E5%9C%A8%E8%AF%BB%E7%BA%A2%E5%AE%9D%E4%B9%A6%EF%BC%81%E3%80%8B/" title="《都 4202 年了，我还在读红宝书！》">
+                        <b>#</b> 《都 4202 年了，我还在读红宝书！》
+                      </a>
+                    </span>
+                    
+                  </span>
+              
                   <span class="post-tags">
                     <i class="iconfont icon-tags mr-10" title="标签"></i>
                     
