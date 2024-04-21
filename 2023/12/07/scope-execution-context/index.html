@@ -11,7 +11,7 @@
   
   <title>
     
-      第1话 来聊聊作用域和执行上下文吧！ 
+      第4话 来聊聊作用域和执行上下文吧！ 
       
       
       |
@@ -110,7 +110,7 @@
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title">第1话 来聊聊作用域和执行上下文吧！</div>
+      <div class="post-title">第4话 来聊聊作用域和执行上下文吧！</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
@@ -141,7 +141,7 @@
           
       </div>
       <div class="markdown-body">
-        <p>先来啃些硬骨头。老习惯，还是特意使用流水线不分目录的叙述方式，方便更好地串起知识点。出现 🏷️ 表示注意力需要集中要链接到下一个话题了。</p>
+        <p>作用域和执行上下文算是硬骨头，让我们做好准备来一口一口嚼碎它。老习惯，还是特意使用流水线不分目录的叙述方式，方便更好地串起知识点。出现 🏷️ 表示注意力需要集中要链接到下一个话题了。</p>
 <h2 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h2><ol>
 <li>JS 是松散类型，深入理解其作用域和执行上下文等概念非常有必要。这一章相当于带我们深入 JS 运行的内部机制。</li>
 <li>在学习之前，首先，我们要意识到，我们写的 JS 代码是一段程序，它运行在 JS 引擎中，不管这个引擎是在浏览器环境，还是在 Node 环境。我们本节讲解的内容就是 JS 引擎在运行 JS 代码时涉及的一些概念。 <strong>先串联一下本章的重要概念：</strong> 在一段代码中，我们会声明一些变量，并把它们赋值为原始类型或引用类型的值。在代码执行过程中，JS 引擎会识别值的类型，将它们存储在内存中不同的地方，并通过“执行上下文”来管理这些值的“作用域”和生命周期。JS 引擎还会帮我们进行内存管理。它的垃圾回收机制会定期检查这些值，当没有变量引用它们时，会将其标记为垃圾数据并释放其占用的内存。 <strong>原始值和引用值的处理、执行上下文的管理，以及垃圾回收的机制，共同构成了 JavaScript 运行时环境中重要的组成部分。</strong></li>
@@ -316,6 +316,11 @@
               
           </div>
           <div class="post-foot-prev">
+            
+              <a href="/2024/04/21/function/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
             
           </div>
         </div>
@@ -633,7 +638,7 @@
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E7%AC%AC1%E8%AF%9D%20%E6%9D%A5%E8%81%8A%E8%81%8A%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E5%90%A7%EF%BC%81 + '&url=' + https%3A%2F%2Fdadaxin.github.io%2F2023%2F12%2F07%2Fscope-execution-context%2F + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E7%AC%AC4%E8%AF%9D%20%E6%9D%A5%E8%81%8A%E8%81%8A%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E5%90%A7%EF%BC%81 + '&url=' + https%3A%2F%2Fdadaxin.github.io%2F2023%2F12%2F07%2Fscope-execution-context%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
